@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 3000;
 
 // Configuration
 const DOWNLOADS_PATH = process.env.DOWNLOADS_PATH || 'C:\\Users\\Rapids AI\\Downloads';
-const OBJECT_DETECTION_API = process.env.OBJECT_DETECTION_API || 'https://287d3369c084.ngrok-free.app/predict_image';
+const OBJECT_DETECTION_API = process.env.OBJECT_DETECTION_API || 'https://a69c6555ac0d.ngrok-free.app/predict';
 const AXIOS_TIMEOUT = process.env.OBJECT_DETECTION_TIMEOUT_MS ? parseInt(process.env.OBJECT_DETECTION_TIMEOUT_MS, 10) : 120000;
 
 app.use(cors({ origin: ['http://localhost:3000', 'http://127.0.0.1:5500', 'http://localhost:5500'], credentials: true }));
@@ -52,10 +52,28 @@ app.get('/api/process-latest-image', async (req, res) => {
     const formData = new FormData();
     formData.append('file', buffer, { filename: path.basename(latest), contentType: 'application/octet-stream' });
     const response = await postMultipartBuffer(OBJECT_DETECTION_API, formData);
+    
+    // Parse JSON response
+    const responseText = decodeResponseData(response.data);
+    const parsedResponse = JSON.parse(responseText);
+    
+    // Extract base64 image and detections
+    const base64Image = parsedResponse.processed_image_base64;
+    const detections = parsedResponse.detections || [];
+    
+    // Convert base64 to buffer and save
+    const imageBuffer = Buffer.from(base64Image, 'base64');
     const outName = `detected_${Date.now()}.png`;
     const outPath = path.join(__dirname, 'public', 'processed', outName);
-    fs.writeFileSync(outPath, response.data);
-    return res.json({ ok: true, url: `/processed/${outName}`, filename: outName });
+    fs.writeFileSync(outPath, imageBuffer);
+    
+    return res.json({ 
+      ok: true, 
+      url: `/processed/${outName}`, 
+      filename: outName,
+      detections: detections,
+      processedImageBase64: base64Image
+    });
   } catch (err) {
     const resp = err.response ? decodeResponseData(err.response.data) : null;
     console.error('process-latest-image error', err.message, resp);
@@ -70,11 +88,30 @@ app.post('/api/process-screenshot', upload.single('screenshot'), async (req, res
     const formData = new FormData();
     formData.append('file', buffer, { filename: req.file.originalname || 'screenshot.png', contentType: req.file.mimetype || 'application/octet-stream' });
     const response = await postMultipartBuffer(OBJECT_DETECTION_API, formData);
+    
     try { fs.unlinkSync(req.file.path); } catch (e) {}
+    
+    // Parse JSON response
+    const responseText = decodeResponseData(response.data);
+    const parsedResponse = JSON.parse(responseText);
+    
+    // Extract base64 image and detections
+    const base64Image = parsedResponse.processed_image_base64;
+    const detections = parsedResponse.detections || [];
+    
+    // Convert base64 to buffer and save
+    const imageBuffer = Buffer.from(base64Image, 'base64');
     const outName = `detected_${Date.now()}.png`;
     const outPath = path.join(__dirname, 'public', 'processed', outName);
-    fs.writeFileSync(outPath, response.data);
-    return res.json({ ok: true, url: `/processed/${outName}`, filename: outName });
+    fs.writeFileSync(outPath, imageBuffer);
+    
+    return res.json({ 
+      ok: true, 
+      url: `/processed/${outName}`, 
+      filename: outName,
+      detections: detections,
+      processedImageBase64: base64Image
+    });
   } catch (err) {
     try { if (req.file && fs.existsSync(req.file.path)) fs.unlinkSync(req.file.path); } catch (e) {}
     const resp = err.response ? decodeResponseData(err.response.data) : null;
