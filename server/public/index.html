@@ -48,7 +48,8 @@
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: var(--background);
+          background: linear-gradient(to right, #0a315b 20%, #000 100%);
+
             color: var(--text-primary);
             line-height: 1.6;
             overflow-x: hidden;
@@ -73,81 +74,101 @@
         }
 
         /* Navigation */
-        .navbar {
-            background: var(--surface);
-            border-bottom: 1px solid var(--border);
-            padding: 1rem 0;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            backdrop-filter: blur(8px);
-        }
+        /* Navigation */
+.navbar {
+  border-bottom: 1px solid #000;
+  padding: 1.5rem 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  backdrop-filter: blur(8px);
+ /* RGBA */
+background-color: rgba(0, 0, 0, 0.6);
 
-        .nav-container {
-            width: 100%;
-            margin: 0 auto;
-            padding: 0 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
 
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            text-decoration: none;
-        }
 
-        .logo i {
-            font-size: 1.75rem;
-        }
 
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
+}
 
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-secondary);
-            font-weight: 500;
-            transition: var(--transition);
-            padding: 0.5rem 1rem;
-            border-radius: 0.5rem;
-        }
+.nav-container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
-        .nav-links a:hover,
-        .nav-links a.active {
-            color: var(--primary-color);
-            background: rgba(37, 99, 235, 0.1);
-        }
+/* Logo */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  text-decoration: none;
+  margin-left: 10%;
+}
 
-        .nav-status {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.875rem;
-        }
+.logo i {
+  font-size: 1.75rem;
+}
 
-        .status-indicator {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: var(--success-color);
-            animation: pulse 2s infinite;
-        }
+/* Right side container */
+.nav-right {
+  display: flex;
+  margin-right: 10%;
+  align-items: center;
+  gap: 2rem; /* space between Detection and Connected */
+}
 
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
+/* Navigation Links */
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--text-secondary);
+  font-weight: 500;
+  transition: var(--transition);
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--primary-color);
+  background: rgba(37, 99, 235, 0.1);
+}
+
+/* Status */
+.nav-status {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: antiquewhite
+}
+
+.status-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--success-color);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
 
         /* Main Layout */
    .main-container {
@@ -157,11 +178,30 @@
   gap: 1rem;
   padding: 1rem;
   width: 100%;
-  max-width: 1400px;   /* 👈 container ki max width */
+  max-width: 100%;   /* 👈 container ki max width */
   margin-left: auto;   /* 👈 center align */
-  margin-right: auto;  /* 👈 center align */
+  margin-right: auto;
+ margin-top: 10%;
+  margin-bottom: 10%;  /* 👈 center align */
 }
 
+.heading h1{
+    text-align: center;
+    color: antiquewhite;
+    font-size: 3rem;
+    font-style: normal;
+    font:bold;
+    
+}
+.heading p{
+    text-align: center;
+    color: antiquewhite;
+    font-size: 1rem;
+    font-style: normal;
+    font:bold;
+    margin-bottom: 5%;
+    
+}
         .map-section {
             background: var(--surface);
             border-radius: var(--border-radius);
@@ -217,18 +257,20 @@
         /* Map Controls */
         .map-controls {
             position: absolute;
-            top: 1rem;
-            left: 1rem;
+            bottom:10rem;
+            right: 1rem;
             z-index: 1000;
             display: flex;
             flex-direction: column;
             gap: 0.5rem;
+            
         }
 
         .layer-controls {
             display: flex;
             flex-direction: column;
-            gap: 0.5rem;
+            gap: 1rem;
+            
         }
 
         .layer-btn {
@@ -260,38 +302,52 @@
             color: white;
             box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.3);
         }
+/* Tooltip box */
+.layer-btn::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  top: 50%;
+  right: 110%; /* left side par le aao */
+  transform: translateY(-50%);
+  background: #333;
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  font-size: 12px;
+  z-index: 9999;
+}
 
-        .layer-btn::after {
-            content: attr(data-tooltip);
-            position: absolute;
-            left: calc(100% + 0.75rem);
-            top: 50%;
-            transform: translateY(-50%);
-            background: var(--text-primary);
-            color: white;
-            padding: 0.5rem 0.75rem;
-            border-radius: 0.375rem;
-            font-size: 0.75rem;
-            white-space: nowrap;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.2s;
-            z-index: 1001;
-        }
+/* Tooltip arrow */
+.layer-btn::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  transform: translateY(-50%);
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent #333 transparent transparent; /* arrow left side */
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
 
-        .layer-btn:hover::after {
-            opacity: 1;
-        }
-
+/* Show on hover */
+.layer-btn:hover::after,
+.layer-btn:hover::before {
+  opacity: 1;
+}
         /* Search Box */
         .search-container {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            z-index: 1000;
-            width: 300px;
-        }
-
+  position: absolute;  /* 👈 relative to map-section */
+  top: 1rem;
+  right: 1rem;
+  z-index: 1000;
+  width: 300px;
+}
         .search-box {
             background: var(--surface);
             border-radius: var(--border-radius);
@@ -337,6 +393,21 @@
             font-size: 0.75rem;
             color: var(--text-secondary);
         }
+       .search-suggestions {
+  display: none; /* by default hidden */
+  background-color: #ffffff;
+  color: #000000;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  max-height: 250px;
+  overflow-y: auto;
+}
+.search-suggestions.active {
+  display: block; /* only show when active */
+}
+
         /* Detection Panel */
         .detection-panel {
             flex: 1;
@@ -1057,29 +1128,44 @@
         .tooltip:hover::after {
             opacity: 1;
         }
+       
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="#" class="logo">
-                <i class="fas fa-satellite"></i>
-                GeoDetect Pro
-            </a>
-            <ul class="nav-links">
-                <li><a href="#" class="active">Detection</a></li>
-                <!-- <li><a href="#settings">Settings</a></li> -->
-            </ul>
-            <div class="nav-status">
-                <div class="status-indicator"></div>
-                <span id="connectionStatus">Connected</span>
-            </div>
-        </div>
-    </nav>
+   
+   <!-- Navigation -->
+<nav class="navbar">
+  <div class="nav-container">
+    <!-- Left side: Logo -->
+    <a href="#" class="logo">
+      <i class="fas fa-satellite"></i>
+      GeoDetect Pro
+    </a>
+
+    <!-- Right side: Links + Status -->
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="#" class="active">Detection</a></li>
+        <!-- <li><a href="#settings">Settings</a></li> -->
+      </ul>
+      <div class="nav-status">
+        <div class="status-indicator"></div>
+        <span id="connectionStatus">Connected</span>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+
+
 
     <!-- Main Container -->
     <div class="main-container">
+        <div class="heading">
+<h1>Geo Detect Pro</h1>
+<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil ullam libero, aperiam iste minus corporis commodi sint, quos pariatur minima recusandae optio totam?</p>
+        </div>
         <!-- Map Section -->
         <div class="map-section">
             <!-- Map Controls -->
@@ -1100,13 +1186,11 @@
                     <div class="search-input-container">
                         <i class="fas fa-search" style="color: var(--text-secondary); margin-right: 0.5rem;"></i>
                         <input type="text" class="search-input" id="searchInput" placeholder="Search locations..." autocomplete="off">
-                        <button class="search-btn" id="searchBtn">
-                            <i class="fas fa-search"></i>
-                        </button>
+                        <!-- <button class="search-btn" id="searchBtn">
+                           
+                        </button> -->
                     </div>
-                    <div class="coordinates-display" id="coordinatesDisplay">
-                        Click on map to see coordinates
-                    </div>
+                   
                 </div>
                 <div id="searchSuggestions" class="search-suggestions"></div>
             </div>
@@ -1193,6 +1277,7 @@
                         </button>
                     </div>
                 </div>
+            
             </div>
 
             <!-- Analytics Panel -->
@@ -1231,6 +1316,7 @@
             -->
         </div>
     </div>
+    
 
     <!-- External Scripts -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>

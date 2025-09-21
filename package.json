@@ -1,0 +1,20 @@
+{
+  "name": "geodetectpro--1",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maham5/geodetectpro-.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maham5/geodetectpro-/issues"
+  },
+  "homepage": "https://github.com/maham5/geodetectpro-#readme",
+  "description": ""
+}
