@@ -608,12 +608,13 @@ new Chart(ctx, {
       label: "Airplane Detection Confidence",
       data: data,
       backgroundColor: "#dbbc34ff",
-      borderRadius: 4,
+     
       barPercentage: 0.5,
       categoryPercentage: 0.6
     }]
   },
   options: {
+    devicePixelRatio: 3,
     responsive: true,
     plugins: {
       legend: { display: false },
@@ -632,7 +633,11 @@ new Chart(ctx, {
               `Coordinates: ${d.coordinates}`
             ];
           }
-        }
+        },
+          bodyFont: {
+          size: 14,
+        
+        },
       }
     },
     scales: {
@@ -641,12 +646,15 @@ new Chart(ctx, {
         title: {
           display: true,
           text: "Detection IDs",
-          color: "#fff"
-        }
+          color: "#fff",
+            font: { size: 16 }
+        },
+            font: { size: 14}
       },
       y: {
         beginAtZero: true,
-        ticks: { color: "#fff" }
+        ticks: { color: "#fff" },
+         font: { size: 14 }
       }
     }
   }
