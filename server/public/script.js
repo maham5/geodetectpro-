@@ -672,3 +672,9 @@ new Chart(ctx, {
     alert("Analysis Complete ✅"); // baad me tum yahan apna real result show karwa sakti ho
   }, 3000);
 });
+
+
+document.getElementById("captureBtn").addEventListener("click", function () {
+  const sidebar = document.getElementById("resultsContainer");
+  sidebar.classList.add("active"); // show sidebar
+});
